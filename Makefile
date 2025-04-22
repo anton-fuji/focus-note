@@ -1,6 +1,9 @@
-.PHONY: build up down logs exec-db
+.PHONY: build rebuild up down logs exec-db
 build:
-	docker compose up --build -d
+	docker compose build 
+
+rebuild:
+	docker compose up --build
 
 up:
 	docker compose up -d
@@ -12,5 +15,5 @@ logs:
 	docker compose logs -f
 
 exec-db:
-	docker compose exec mysql bash
+	docker compose exec db bash
 
