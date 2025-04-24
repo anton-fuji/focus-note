@@ -1,15 +1,17 @@
 package main
 
 import (
-	"net/http"
+	"backend/config"
+	"backend/routes"
 
 	"github.com/labstack/echo/v4"
 )
 
 func main() {
+	config.InitDB()
+
 	e := echo.New()
-	e.GET("/", func(c echo.Context) error {
-		return c.String(http.StatusOK, "Hello, World!")
-	})
+
+	routes.SetupRoutes(e)
 	e.Logger.Fatal(e.Start(":1323"))
 }

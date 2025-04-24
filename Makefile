@@ -15,5 +15,5 @@ logs:
 	docker compose logs -f
 
 exec-db:
-	docker compose exec db bash
+	docker compose exec -it focus-note-db-1 bash
 

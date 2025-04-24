@@ -1,16 +1,16 @@
 #========== Build Stage ===========
-FROM golang:1.24.2-alpine as builder
+FROM golang:1.24.2-alpine AS builder
 
 WORKDIR /app
 
 COPY backend/go.mod backend/go.sum ./
 RUN go mod download
 
-COPY ./backend/ .
+COPY backend/ .
 RUN go build -o main ./cmd
 
 #========== Dev Stage ===========
-FROM golang:1.24.2-alpine as development
+FROM golang:1.24.2-alpine AS development
 
 RUN apk update && apk add git
 
