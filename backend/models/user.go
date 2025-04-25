@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-type User struct {
+type Users struct {
 	Id         string    `gorm:"primaryKey;type:char(36)" json:"id"`
 	Name       string    `json:"name"`
 	Email      string    `gorm:"uniqueIndex"`
@@ -10,6 +10,6 @@ type User struct {
 	Created_at time.Time `json:"created_at"`
 }
 
-func (b *User) TableName() string {
+func (b *Users) TableName() string {
 	return "user"
 }

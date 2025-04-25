@@ -9,7 +9,7 @@ import (
 )
 
 func GetUsers(c echo.Context) error {
-	var users []models.User
+	var users []models.Users
 	if err := config.DB.Find(&users).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, echo.Map{"Error": err.Error()})
 	}
@@ -17,7 +17,7 @@ func GetUsers(c echo.Context) error {
 }
 
 func CreateUser(c echo.Context) error {
-	var user models.User
+	var user models.Users
 	if err := c.Bind(&user); err != nil {
 		return c.JSON(http.StatusBadRequest, echo.Map{"Error": err.Error()})
 	}
@@ -29,7 +29,7 @@ func CreateUser(c echo.Context) error {
 
 func GetUserByID(c echo.Context) error {
 	id := c.Param("id")
-	var user models.User
+	var user models.Users
 	if err := config.DB.First(&user, id).Error; err != nil {
 		return c.JSON(http.StatusNotFound, echo.Map{"Error": err.Error()})
 	}
@@ -38,7 +38,7 @@ func GetUserByID(c echo.Context) error {
 
 func UpdateUser(c echo.Context) error {
 	id := c.Param("id")
-	var user models.User
+	var user models.Users
 	if err := config.DB.First(&user, id).Error; err != nil {
 		return c.JSON(http.StatusNotFound, echo.Map{"error": "ユーザーが見つかりません"})
 	}
@@ -53,7 +53,7 @@ func UpdateUser(c echo.Context) error {
 
 func DeleteUser(c echo.Context) error {
 	id := c.Param("id")
-	if err := config.DB.Delete(&models.User{}, id).Error; err != nil {
+	if err := config.DB.Delete(&models.Users{}, id).Error; err != nil {
 		return c.JSON(http.StatusInternalServerError, echo.Map{"error": err.Error()})
 	}
 	return c.NoContent(http.StatusNoContent)
